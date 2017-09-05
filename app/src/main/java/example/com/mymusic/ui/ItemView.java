@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import example.com.mymusic.util.ToolActivity;
 
 /**
  * @author Wang Shaoming
@@ -19,13 +18,16 @@ import example.com.mymusic.util.ToolActivity;
 
 public class ItemView extends LinearLayout {
 //    private Context context;
-    public ItemView(@NonNull Context context) {
+    private int width;
+    public ItemView(@NonNull Context context, int width) {
         super(context);
-        this.setBackgroundColor(Color.GREEN);
+        this.setBackgroundColor(Color.BLUE);
         this.setOrientation(VERTICAL);
-        LayoutParams mainParams = new LayoutParams((int)ToolActivity.getScreenWidth()/2, (int)ToolActivity.getScreenWidth()/2);
+        LayoutParams mainParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        mainParams.setMargins(10,10,10,10);//以后改成4dp
         this.setLayoutParams(mainParams);
 //        this.context = context;
+        this.width = width;
         initView(context);
 
     }
@@ -34,27 +36,32 @@ public class ItemView extends LinearLayout {
     private void initView(Context context) {
 
         imageView = new ImageView(context);
-        LayoutParams imageParams = new LayoutParams(78,78);
+        LayoutParams imageParams = new LayoutParams(width/2-20, width/2-20);
         imageView.setLayoutParams(imageParams);
+        imageView.setPadding(20,20,20,20);
         addView(imageView);
 
         LayoutParams textParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        LinearLayout textGroup = new LinearLayout(context);
-        textGroup.setLayoutParams(textParams);
-        textGroup.setOrientation(HORIZONTAL);
+//        LinearLayout textGroup = new LinearLayout(context);
+//        textGroup.setLayoutParams(textParams);
+//        textGroup.setOrientation(HORIZONTAL);
 
         name = new TextView(context);
         name.setLayoutParams(textParams);
-        name.setText("ajlkds");
-        name.setTextSize(12);
-        textGroup.addView(name);
+//        name.setText("ajlkds");
+        name.setTextSize(14);
+        name.setPadding(5,5,5,0);
+//        textGroup.addView(name);
+        addView(name);
 
         auther = new TextView(context);
         auther.setLayoutParams(textParams);
-        auther.setText("ajlkds");
+//        auther.setText("ajlkds");
         auther.setTextSize(12);
-        textGroup.addView(auther);
-        addView(textGroup);
+        auther.setPadding(5,5,5,5);
+//        textGroup.addView(auther);
+//        addView(textGroup);
+        addView(auther);
     }
 
     public TextView getName() {

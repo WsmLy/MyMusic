@@ -51,6 +51,7 @@ dependencies {
     compile other_dependencies.greendao
     compile other_dependencies.rxjava
     compile other_dependencies.rxandroid
+    compile other_dependencies.header
 }
 repositories {
     mavenCentral()
