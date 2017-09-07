@@ -5,7 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import example.com.mymusic.R;
+import example.com.mymusic.entity.BaseMusic;
 import example.com.mymusic.ui.ItemView;
 
 /**
@@ -17,10 +20,12 @@ import example.com.mymusic.ui.ItemView;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private Context context;
     private int width;
+    private List<BaseMusic> musicList;
     private OnItemClick onItemClick;
-    public RecyclerViewAdapter(Context context, int width) {
+    public RecyclerViewAdapter(Context context, int width, List<BaseMusic> musicList) {
         this.context = context;
         this.width = width;
+        this.musicList = musicList;
     }
 
     public void setOnItemClick(OnItemClick onItemClick) {
@@ -34,9 +39,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        ((ItemView)holder.itemView).getName().setText("hello");
-        ((ItemView)holder.itemView).getAuther().setText("mymusic");
-        ((ItemView)holder.itemView).getImageView().setImageResource(R.mipmap.ic_launcher);
+        ((ItemView)holder.itemView).getName().setText(musicList.get(position).getName());
+        ((ItemView)holder.itemView).getAuther().setText(musicList.get(position).getAuthor());
+        ((ItemView)holder.itemView).getImageView().setImageResource(musicList.get(position).getImage());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,7 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return 10;
+        return musicList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

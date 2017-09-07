@@ -45,7 +45,8 @@ ext {
             glide       :   'com.github.bumptech.glide:glide:3.7.0',
             greendao    :   'org.greenrobot:greendao:3.1.0',
             rxjava      :   'io.reactivex:rxjava:1.0.14',
-            rxandroid   :   'io.reactivex:rxandroid:0.24.0'
+            rxandroid   :   'io.reactivex:rxandroid:0.24.0',
+            header      :   'com.bartoszlipinski.recyclerviewheader:library:1.2.0'
     ]
 }
 

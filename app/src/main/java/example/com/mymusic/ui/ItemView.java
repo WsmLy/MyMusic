@@ -21,7 +21,7 @@ public class ItemView extends LinearLayout {
     private int width;
     public ItemView(@NonNull Context context, int width) {
         super(context);
-        this.setBackgroundColor(Color.BLUE);
+//        this.setBackgroundColor(Color.BLUE);
         this.setOrientation(VERTICAL);
         LayoutParams mainParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mainParams.setMargins(10,10,10,10);//以后改成4dp
