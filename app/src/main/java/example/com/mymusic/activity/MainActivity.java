@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         music.setName("name");
         music.setAuthor("author");
         music.setSinger("singer");
-        music.setImage(R.drawable.ic_account_black_36dp);
+        music.setImage(R.mipmap.ic_launcher_round);
         musicList.add(music);
     }
 

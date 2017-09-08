@@ -26,16 +26,16 @@ public class PlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        intent = getIntent();
+
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int screenWidth = dm.widthPixels;
         int screenHeight = dm.heightPixels;
-        PlayView playView = new PlayView(this, screenWidth);
+        PlayView playView = new PlayView(this, screenWidth, intent.getIntExtra("image", 0));
 
 //        setContentView(R.layout.playactivity_layout);
         setContentView(playView);
-
-        intent = getIntent();
 
         LinearLayout barView = new LinearLayout(this);
         LinearLayout.LayoutParams barParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -44,9 +44,10 @@ public class PlayActivity extends AppCompatActivity {
 
         ImageView back = new ImageView(this);
         LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        btnParams.gravity = Gravity.CENTER;
         btnParams.setMargins(DisplayUtil.px2dip(this, 4), DisplayUtil.px2dip(this, 4), DisplayUtil.px2dip(this, 4), DisplayUtil.px2dip(this, 4));
         back.setLayoutParams(btnParams);
-        back.setBackgroundResource(R.mipmap.ic_launcher_round);
+        back.setBackgroundResource(R.drawable.arrow_left);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

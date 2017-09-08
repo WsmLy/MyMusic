@@ -23,10 +23,12 @@ import example.com.mymusic.util.DisplayUtil;
 public class PlayView extends LinearLayout {
 //    private Context context;
     private int width;
-    public PlayView(Context context, int width) {
+    private int image;
+    public PlayView(Context context, int width, int image) {
         super(context);
 //        this.context = context;
         this.width = width;
+        this.image = image;
         this.setOrientation(VERTICAL);
         init(context);
     }
@@ -43,31 +45,33 @@ public class PlayView extends LinearLayout {
         ImageView playImage = new ImageView(context);
         LayoutParams params = new LayoutParams(width, (int)(width*1.2));
         playImage.setLayoutParams(params);
-        playImage.setImageResource(R.mipmap.ic_launcher_round);
+        playImage.setImageResource(image);
         addView(playImage);
 
         LinearLayout linearLayout = new LinearLayout(context);
-        LayoutParams params1 = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+        LayoutParams params1 = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 0, 1);
+        params1.gravity = Gravity.CENTER;
         linearLayout.setLayoutParams(params1);
         linearLayout.setOrientation(HORIZONTAL);
 
-        Button btnStart, btnPause, btnStop;
-        btnStart = new Button(context);
-        btnPause = new Button(context);
-        btnStop = new Button(context);
+        ImageView btnStart, btnPause, btnStop;
+        btnStart = new ImageView(context);
+        btnPause = new ImageView(context);
+        btnStop = new ImageView(context);
         LayoutParams btnParams = new LayoutParams(0, DisplayUtil.px2dip(context, 72), 1);
+        btnParams.setMargins( DisplayUtil.px2dip(context, 30), DisplayUtil.px2dip(context, 30), DisplayUtil.px2dip(context, 30), DisplayUtil.px2dip(context, 30));
         btnStart.setLayoutParams(btnParams);
         btnPause.setLayoutParams(btnParams);
         btnStop.setLayoutParams(btnParams);
-        btnPause.setBackground(null);
-        btnStart.setBackground(null);
-        btnStop.setBackground(null);
-        btnStart.setText("start");
-        btnPause.setText("pause");
-        btnStop.setText("stop");
-        btnPause.setTextSize(12);
-        btnStart.setTextSize(12);
-        btnStop.setTextSize(12);
+        btnPause.setBackgroundResource(R.drawable.pause);
+        btnStart.setBackgroundResource(R.drawable.play);
+        btnStop.setBackgroundResource(R.drawable.stop);
+//        btnStart.setText("start");
+//        btnPause.setText("pause");
+//        btnStop.setText("stop");
+//        btnPause.setTextSize(12);
+//        btnStart.setTextSize(12);
+//        btnStop.setTextSize(12);
         btnStart.setPadding(0,0,0,0);
         btnStop.setPadding(0,0,0,0);
         btnPause.setPadding(0,0,0,0);

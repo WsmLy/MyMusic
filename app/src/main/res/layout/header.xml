@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="0dp"
         android:layout_gravity="center"
-        android:background="@drawable/ic_account_black_36dp" />
+        android:background="@drawable/menu" />
 
     <EditText
         android:id="@+id/search_text"
@@ -21,9 +21,11 @@
 
     <ImageView
         android:id="@+id/search_button"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_margin="4dp"
+        android:paddingTop="4dp"
+        android:layout_gravity="center"
         android:background="@drawable/search" />
 
 </LinearLayout>
