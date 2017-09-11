@@ -21,9 +21,10 @@ import example.com.mymusic.util.DisplayUtil;
  */
 
 public class PlayView extends LinearLayout {
-//    private Context context;
+    //    private Context context;
     private int width;
     private int image;
+
     public PlayView(Context context, int width, int image) {
         super(context);
 //        this.context = context;
@@ -43,7 +44,7 @@ public class PlayView extends LinearLayout {
 //        addView(nameText);
 
         ImageView playImage = new ImageView(context);
-        LayoutParams params = new LayoutParams(width, (int)(width*1.2));
+        LayoutParams params = new LayoutParams(width, (int) (width * 1.2));
         playImage.setLayoutParams(params);
         playImage.setImageResource(image);
         addView(playImage);
@@ -59,7 +60,7 @@ public class PlayView extends LinearLayout {
         btnPause = new ImageView(context);
         btnStop = new ImageView(context);
         LayoutParams btnParams = new LayoutParams(0, DisplayUtil.px2dip(context, 72), 1);
-        btnParams.setMargins( DisplayUtil.px2dip(context, 30), DisplayUtil.px2dip(context, 30), DisplayUtil.px2dip(context, 30), DisplayUtil.px2dip(context, 30));
+        btnParams.setMargins(DisplayUtil.px2dip(context, 30), DisplayUtil.px2dip(context, 30), DisplayUtil.px2dip(context, 30), DisplayUtil.px2dip(context, 30));
         btnStart.setLayoutParams(btnParams);
         btnPause.setLayoutParams(btnParams);
         btnStop.setLayoutParams(btnParams);
@@ -72,9 +73,9 @@ public class PlayView extends LinearLayout {
 //        btnPause.setTextSize(12);
 //        btnStart.setTextSize(12);
 //        btnStop.setTextSize(12);
-        btnStart.setPadding(0,0,0,0);
-        btnStop.setPadding(0,0,0,0);
-        btnPause.setPadding(0,0,0,0);
+        btnStart.setPadding(0, 0, 0, 0);
+        btnStop.setPadding(0, 0, 0, 0);
+        btnPause.setPadding(0, 0, 0, 0);
         btnStart.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,6 +102,5 @@ public class PlayView extends LinearLayout {
         linearLayout.addView(btnPause);
         linearLayout.addView(btnStop);
         addView(linearLayout);
-
     }
 }

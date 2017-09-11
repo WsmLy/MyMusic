@@ -21,6 +21,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
     private ImageView menu;
     private ImageView search;
     private List<BaseMusic> musicList;
+//    private DrawerLayout drawerLayout;
+    private FrameLayout drawerLayout;
+    private RelativeLayout relativeLayout;
+
+    private String[] leftMenuNames = {"left_item1", "left_item2",
+            "left_item3", "left_item4"};
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int screenWidth = dm.widthPixels;// * dm.density);
         int screenHeight = dm.heightPixels;// * dm.density);
+
+//        drawerLayout = new DrawerLayout(this);
+        drawerLayout = new FrameLayout(this);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        drawerLayout.setLayoutParams(layoutParams);
 
         FrameLayout parentView = new FrameLayout(this);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -87,13 +99,31 @@ public class MainActivity extends AppCompatActivity {
         parentView.addView(mainView);
 //        header.attachTo(mainView);
 
+        drawerLayout.addView(parentView);
+
+        relativeLayout = new RelativeLayout(this);
+        LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(DisplayUtil.dip2px(this, 200), ViewGroup.LayoutParams.MATCH_PARENT);
+        layoutParams1.gravity = Gravity.LEFT;
+        relativeLayout.setBackgroundColor(Color.WHITE);
+        relativeLayout.setLayoutParams(layoutParams1);
+
+        ListView listView = new ListView(this);
+        listView.setLayoutParams(params);
+        listView.setAdapter(new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, leftMenuNames));//给左边菜单写入数据
+        relativeLayout.addView(listView);
+
+        drawerLayout.addView(relativeLayout);
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);//ENABLE自定义的ACTIONBAR
             actionBar.setCustomView(R.layout.header);
         }
-        setContentView(parentView);
+        setContentView(drawerLayout);
 
+//        drawerLayout.closeDrawer(Gravity.LEFT);
+        relativeLayout.setVisibility(View.GONE);
         findView();
         onClick();
 
@@ -112,6 +142,22 @@ public class MainActivity extends AppCompatActivity {
         music.setSinger("singer");
         music.setImage(R.mipmap.ic_launcher_round);
         musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name");
+        music.setAuthor("author");
+        music.setSinger("singer");
+        music.setImage(R.mipmap.ic_launcher_round);
+        musicList.add(music); music = new BaseMusic();
+        music.setName("name");
+        music.setAuthor("author");
+        music.setSinger("singer");
+        music.setImage(R.mipmap.ic_launcher_round);
+        musicList.add(music); music = new BaseMusic();
+        music.setName("name");
+        music.setAuthor("author");
+        music.setSinger("singer");
+        music.setImage(R.mipmap.ic_launcher_round);
+        musicList.add(music);
     }
 
     private void onClick() {
@@ -122,6 +168,12 @@ public class MainActivity extends AppCompatActivity {
                  * menu点击事件处理
                  * 弹出fragment侧边栏盒子
                  */
+//                drawerLayout.openDrawer(Gravity.LEFT);
+                if (relativeLayout.getVisibility() == View.GONE) {
+                    relativeLayout.setVisibility(View.VISIBLE);
+                } else {
+                    relativeLayout.setVisibility(View.GONE);
+                }
                 Toast.makeText(MainActivity.this, "Menu", Toast.LENGTH_SHORT).show();
             }
         });
@@ -136,6 +188,14 @@ public class MainActivity extends AppCompatActivity {
                  * 若没有，就去网上爬取相关内容。
                  */
                 Toast.makeText(MainActivity.this, "Search", Toast.LENGTH_SHORT).show();
+            }
+        });
+        drawerLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (relativeLayout.getVisibility() != View.GONE) {
+                    relativeLayout.setVisibility(View.GONE);
+                }
             }
         });
     }

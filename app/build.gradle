@@ -41,6 +41,7 @@ dependencies {
     compile system_dependencies.cardview
     compile system_dependencies.recyclerview
 //    compile system_dependencies.kotlin
+    compile system_dependencies.design
 
     def other_dependencies = rootProject.ext.other_dependencies
     compile other_dependencies.fresco
