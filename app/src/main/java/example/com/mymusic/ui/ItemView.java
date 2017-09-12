@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import example.com.mymusic.util.DisplayUtil;
+
 
 /**
  * @author Wang Shaoming
@@ -24,7 +26,7 @@ public class ItemView extends LinearLayout {
 //        this.setBackgroundColor(Color.BLUE);
         this.setOrientation(VERTICAL);
         LayoutParams mainParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        mainParams.setMargins(10,10,10,10);//以后改成4dp
+        mainParams.setMargins(DisplayUtil.dip2px(context, 4),DisplayUtil.dip2px(context, 4),DisplayUtil.dip2px(context, 4),DisplayUtil.dip2px(context, 4));//以后改成4dp
         this.setLayoutParams(mainParams);
 //        this.context = context;
         this.width = width;
@@ -39,6 +41,7 @@ public class ItemView extends LinearLayout {
         LayoutParams imageParams = new LayoutParams(width/2-20, width/2-20);
         imageView.setLayoutParams(imageParams);
         imageView.setPadding(20,20,20,20);
+//        imageView.setElevation(0);
         addView(imageView);
 
         LayoutParams textParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

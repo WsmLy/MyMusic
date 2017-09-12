@@ -24,7 +24,7 @@ allprojects {
 ext {
     needPrivateDebug = false
 
-    compileSdkVersion = 21
+    compileSdkVersion = 26
     targetSdkVersion = 26
     buildToolsVersion = "26.0.1"
 

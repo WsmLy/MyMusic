@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,8 +32,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import example.com.mymusic.R;
+import example.com.mymusic.adapter.LeftAdapter;
 import example.com.mymusic.adapter.RecyclerViewAdapter;
 import example.com.mymusic.entity.BaseMusic;
+import example.com.mymusic.entity.ItemLeft;
 import example.com.mymusic.ui.MyDecoration;
 import example.com.mymusic.util.DisplayUtil;
 
@@ -47,9 +50,13 @@ public class MainActivity extends AppCompatActivity {
     private ImageView menu;
     private ImageView search;
     private List<BaseMusic> musicList;
+    private List<ItemLeft> itemLeftList;
+
 //    private DrawerLayout drawerLayout;
     private FrameLayout drawerLayout;
     private RelativeLayout relativeLayout;
+    FrameLayout parentView;
+    RecyclerView mainView;
 
     private String[] leftMenuNames = {"left_item1", "left_item2",
             "left_item3", "left_item4"};
@@ -70,11 +77,12 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         drawerLayout.setLayoutParams(layoutParams);
 
-        FrameLayout parentView = new FrameLayout(this);
+        parentView = new FrameLayout(this);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         parentView.setLayoutParams(params);
+//        parentView.setElevation(4);
 //        RecyclerViewHeader header = RecyclerViewHeader.fromXml(this, R.layout.header);
-        RecyclerView mainView = new RecyclerView(this);
+        mainView = new RecyclerView(this);
         mainView.setLayoutParams(params);
         mainView.setLayoutManager(new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false));
 //        mainView.addItemDecoration(new MyDecoration(this, MyDecoration.VERTICAL_LIST));
@@ -104,13 +112,22 @@ public class MainActivity extends AppCompatActivity {
         relativeLayout = new RelativeLayout(this);
         LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(DisplayUtil.dip2px(this, 200), ViewGroup.LayoutParams.MATCH_PARENT);
         layoutParams1.gravity = Gravity.LEFT;
-        relativeLayout.setBackgroundColor(Color.WHITE);
-        relativeLayout.setLayoutParams(layoutParams1);
+//        relativeLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark, null));
+        relativeLayout.setLayoutParams(params);
 
-        ListView listView = new ListView(this);
-        listView.setLayoutParams(params);
-        listView.setAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, leftMenuNames));//给左边菜单写入数据
+        RecyclerView listView = new RecyclerView(this);
+        listView.setLayoutParams(layoutParams1);
+        listView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
+        LeftAdapter leftAdapter = new LeftAdapter(this, itemLeftList);
+        leftAdapter.setOnItemClick(new LeftAdapter.OnItemClick() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(MainActivity.this, position+"", Toast.LENGTH_SHORT).show();
+            }
+        });
+        listView.setAdapter(leftAdapter);//给左边菜单写入数据
+        listView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        listView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark, null));
         relativeLayout.addView(listView);
 
         drawerLayout.addView(relativeLayout);
@@ -158,6 +175,28 @@ public class MainActivity extends AppCompatActivity {
         music.setSinger("singer");
         music.setImage(R.mipmap.ic_launcher_round);
         musicList.add(music);
+
+        itemLeftList = new ArrayList<>();
+        ItemLeft itemLeft = new ItemLeft();
+        itemLeft.setImageId(R.mipmap.ic_launcher_round);
+        itemLeft.setText("itemLeft_1");
+        itemLeftList.add(itemLeft);
+        itemLeft = new ItemLeft();
+        itemLeft.setImageId(R.mipmap.ic_launcher);
+        itemLeft.setText("itemLeft_2");
+        itemLeftList.add(itemLeft);
+        itemLeft = new ItemLeft();
+        itemLeft.setImageId(R.mipmap.ic_launcher_round);
+        itemLeft.setText("itemLeft_3");
+        itemLeftList.add(itemLeft);
+        itemLeft = new ItemLeft();
+        itemLeft.setImageId(R.mipmap.ic_launcher);
+        itemLeft.setText("itemLeft_4");
+        itemLeftList.add(itemLeft);
+        itemLeft = new ItemLeft();
+        itemLeft.setImageId(R.mipmap.ic_launcher_round);
+        itemLeft.setText("itemLeft_5");
+        itemLeftList.add(itemLeft);
     }
 
     private void onClick() {
@@ -171,10 +210,14 @@ public class MainActivity extends AppCompatActivity {
 //                drawerLayout.openDrawer(Gravity.LEFT);
                 if (relativeLayout.getVisibility() == View.GONE) {
                     relativeLayout.setVisibility(View.VISIBLE);
+                    parentView.setClickable(false);
+                    mainView.setClickable(false);
                 } else {
                     relativeLayout.setVisibility(View.GONE);
+                    parentView.setClickable(true);
+                    mainView.setClickable(true);
                 }
-                Toast.makeText(MainActivity.this, "Menu", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "Menu", Toast.LENGTH_SHORT).show();
             }
         });
         search.setOnClickListener(new View.OnClickListener() {
