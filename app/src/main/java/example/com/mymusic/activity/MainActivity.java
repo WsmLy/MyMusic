@@ -55,11 +55,12 @@ public class MainActivity extends AppCompatActivity {
 //    private DrawerLayout drawerLayout;
     private FrameLayout drawerLayout;
     private RelativeLayout relativeLayout;
-    FrameLayout parentView;
-    RecyclerView mainView;
+    private FrameLayout parentView;
+    private RecyclerView mainView;
+    private RecyclerViewAdapter adapter;
 
-    private String[] leftMenuNames = {"left_item1", "left_item2",
-            "left_item3", "left_item4"};
+//    private String[] leftMenuNames = {"left_item1", "left_item2",
+//            "left_item3", "left_item4"};
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,10 +88,11 @@ public class MainActivity extends AppCompatActivity {
         mainView.setLayoutManager(new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false));
 //        mainView.addItemDecoration(new MyDecoration(this, MyDecoration.VERTICAL_LIST));
         init();
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, screenWidth, musicList);
+        adapter = new RecyclerViewAdapter(this, screenWidth, musicList);
         adapter.setOnItemClick(new RecyclerViewAdapter.OnItemClick() {
             @Override
             public void onClick(View view, int position) {
+
                 Intent intent = new Intent(MainActivity.this, PlayActivity.class);
                 /**
                  * 传参数
@@ -122,7 +124,20 @@ public class MainActivity extends AppCompatActivity {
         leftAdapter.setOnItemClick(new LeftAdapter.OnItemClick() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(MainActivity.this, position+"", Toast.LENGTH_SHORT).show();
+                switch (itemLeftList.get(position).getId()) {
+                    case 0:
+                        Toast.makeText(MainActivity.this, position+"", Toast.LENGTH_SHORT).show();break;
+                    case 1:
+                        Toast.makeText(MainActivity.this, position+"", Toast.LENGTH_SHORT).show();break;
+                    case 2:
+                        Toast.makeText(MainActivity.this, position+"", Toast.LENGTH_SHORT).show();break;
+                    case 3:
+                        Toast.makeText(MainActivity.this, position+"检查更新", Toast.LENGTH_SHORT).show();break;
+                    case 4:
+                        Toast.makeText(MainActivity.this, position+"关于我们", Toast.LENGTH_SHORT).show();break;
+                    default:
+                        break;
+                }
             }
         });
         listView.setAdapter(leftAdapter);//给左边菜单写入数据
@@ -180,22 +195,27 @@ public class MainActivity extends AppCompatActivity {
         ItemLeft itemLeft = new ItemLeft();
         itemLeft.setImageId(R.mipmap.ic_launcher_round);
         itemLeft.setText("itemLeft_1");
+        itemLeft.setId(0);
         itemLeftList.add(itemLeft);
         itemLeft = new ItemLeft();
         itemLeft.setImageId(R.mipmap.ic_launcher);
         itemLeft.setText("itemLeft_2");
+        itemLeft.setId(1);
         itemLeftList.add(itemLeft);
         itemLeft = new ItemLeft();
         itemLeft.setImageId(R.mipmap.ic_launcher_round);
         itemLeft.setText("itemLeft_3");
+        itemLeft.setId(2);
         itemLeftList.add(itemLeft);
         itemLeft = new ItemLeft();
         itemLeft.setImageId(R.mipmap.ic_launcher);
-        itemLeft.setText("itemLeft_4");
+        itemLeft.setText("检查更新");
+        itemLeft.setId(3);
         itemLeftList.add(itemLeft);
         itemLeft = new ItemLeft();
         itemLeft.setImageId(R.mipmap.ic_launcher_round);
-        itemLeft.setText("itemLeft_5");
+        itemLeft.setText("关于我们");
+        itemLeft.setId(4);
         itemLeftList.add(itemLeft);
     }
 
@@ -210,16 +230,29 @@ public class MainActivity extends AppCompatActivity {
 //                drawerLayout.openDrawer(Gravity.LEFT);
                 if (relativeLayout.getVisibility() == View.GONE) {
                     relativeLayout.setVisibility(View.VISIBLE);
-                    parentView.setClickable(false);
-                    mainView.setClickable(false);
+                    adapter.setItemClickable(false);
                 } else {
                     relativeLayout.setVisibility(View.GONE);
-                    parentView.setClickable(true);
-                    mainView.setClickable(true);
+                    adapter.setItemClickable(true);
                 }
 //                Toast.makeText(MainActivity.this, "Menu", Toast.LENGTH_SHORT).show();
             }
         });
+        /**
+         * 并不执行
+         */
+//        parentView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (relativeLayout.getVisibility() == View.GONE) {
+//                    relativeLayout.setVisibility(View.GONE);
+//                } else {
+//
+//                    Toast.makeText(MainActivity.this, "repeat", Toast.LENGTH_SHORT).show();
+//
+//                }
+//            }
+//        });
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

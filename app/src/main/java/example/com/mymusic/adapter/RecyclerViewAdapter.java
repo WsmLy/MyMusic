@@ -22,6 +22,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private int width;
     private List<BaseMusic> musicList;
     private OnItemClick onItemClick;
+    private boolean itemClickable = true;
+
     public RecyclerViewAdapter(Context context, int width, List<BaseMusic> musicList) {
         this.context = context;
         this.width = width;
@@ -30,6 +32,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public void setOnItemClick(OnItemClick onItemClick) {
         this.onItemClick = onItemClick;
+    }
+
+    public void setItemClickable(boolean itemClickable) {
+        this.itemClickable = itemClickable;
     }
 
     @Override
@@ -45,8 +51,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int position = holder.getLayoutPosition();
-                onItemClick.onClick(holder.itemView, position);
+                if (itemClickable) {
+                    int position = holder.getLayoutPosition();
+                    onItemClick.onClick(holder.itemView, position);
+                }
             }
         });
     }

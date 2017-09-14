@@ -7,8 +7,17 @@ package example.com.mymusic.entity;
  */
 
 public class ItemLeft {
+    private int id;
     private int imageId;
     private String text;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getImageId() {
         return imageId;
