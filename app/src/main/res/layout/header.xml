@@ -12,12 +12,36 @@
         android:layout_gravity="center"
         android:background="@drawable/menu" />
 
-    <EditText
-        android:id="@+id/search_text"
+    <!--<EditText-->
+        <!--android:id="@+id/search_text"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:hint="名称、歌手等" />-->
+
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:hint="名称、歌手等" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:text="Name"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="singer"/>
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/search_button"

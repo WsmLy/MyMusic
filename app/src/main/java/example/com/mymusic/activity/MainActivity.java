@@ -263,6 +263,7 @@ public class MainActivity extends AppCompatActivity {
                  * 再查询数据库，
                  * 若没有，就去网上爬取相关内容。
                  */
+                startActivity(new Intent(MainActivity.this, SearchActivity.class));
                 Toast.makeText(MainActivity.this, "Search", Toast.LENGTH_SHORT).show();
             }
         });
