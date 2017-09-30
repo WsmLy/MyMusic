@@ -28,27 +28,7 @@ public class WeexActivity extends AppCompatActivity implements IWXRenderListener
          * width 为-1 默认全屏，可以自己定制。
          * height =-1 默认全屏，可以自己定制。
          */
-        mWXSDKInstance.render("WXSample", WXFileUtils.loadFileContent("hello.js", this), null, null, -1, -1, WXRenderStrategy.APPEND_ASYNC);
-    }
-
-    @Override
-    public void onViewCreated(WXSDKInstance instance, View view) {
-        setContentView(view);
-    }
-
-    @Override
-    public void onRenderSuccess(WXSDKInstance instance, int width, int height) {
-
-    }
-
-    @Override
-    public void onRefreshSuccess(WXSDKInstance instance, int width, int height) {
-
-    }
-
-    @Override
-    public void onException(WXSDKInstance instance, String errCode, String msg) {
-
+        mWXSDKInstance.render("WXSample", WXFileUtils.loadFileContent("begin.js", this), null, null, -1, -1, WXRenderStrategy.APPEND_ASYNC);
     }
 
     @Override
@@ -82,4 +62,25 @@ public class WeexActivity extends AppCompatActivity implements IWXRenderListener
             mWXSDKInstance.onActivityDestroy();
         }
     }
+
+    @Override
+    public void onViewCreated(WXSDKInstance instance, View view) {
+        setContentView(view);
+    }
+
+    @Override
+    public void onRenderSuccess(WXSDKInstance instance, int width, int height) {
+
+    }
+
+    @Override
+    public void onRefreshSuccess(WXSDKInstance instance, int width, int height) {
+
+    }
+
+    @Override
+    public void onException(WXSDKInstance instance, String errCode, String msg) {
+
+    }
+
 }
