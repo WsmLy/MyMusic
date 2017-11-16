@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         DisplayMetrics dm = new DisplayMetrics();
 //        display.getMetrics(dm);
 
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
         int screenWidth = dm.widthPixels;// * dm.density);
         int screenHeight = dm.heightPixels;// * dm.density);
 
