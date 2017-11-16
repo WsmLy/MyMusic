@@ -18,12 +18,7 @@ public class SearchActivity extends AppCompatActivity {
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
             actionBar.setCustomView(R.layout.search_header);
         }
-        ((Button)findViewById(R.id.back)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        findViewById(R.id.back).setOnClickListener(view -> finish());
         setContentView(R.layout.activity_search);
     }
 }

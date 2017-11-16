@@ -1,6 +1,7 @@
 package example.com.mymusic.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.hardware.display.DisplayManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -48,12 +49,7 @@ public class PlayActivity extends AppCompatActivity {
         btnParams.setMargins(DisplayUtil.px2dip(this, 4), DisplayUtil.px2dip(this, 4), DisplayUtil.px2dip(this, 4), DisplayUtil.px2dip(this, 4));
         back.setLayoutParams(btnParams);
         back.setBackgroundResource(R.drawable.arrow_left);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        back.setOnClickListener(view -> finish());
         barView.addView(back);
 
         LinearLayout linearLayout = new LinearLayout(this);
@@ -66,6 +62,7 @@ public class PlayActivity extends AppCompatActivity {
         nameText.setLayoutParams(nameParams);
         nameText.setGravity(Gravity.CENTER);
         nameText.setTextSize(14);
+        nameText.setTextColor(Color.WHITE);
         nameText.setText(intent.getStringExtra("name"));
         linearLayout.addView(nameText);
 
@@ -73,6 +70,7 @@ public class PlayActivity extends AppCompatActivity {
         singerText.setLayoutParams(nameParams);
         singerText.setGravity(Gravity.CENTER);
         singerText.setTextSize(12);
+        singerText.setTextColor(Color.WHITE);
         singerText.setText(intent.getStringExtra("singer"));
         linearLayout.addView(singerText);
 
@@ -83,6 +81,5 @@ public class PlayActivity extends AppCompatActivity {
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
             actionBar.setCustomView(barView);
         }
-//        getSupportActionBar().hide();
     }
 }

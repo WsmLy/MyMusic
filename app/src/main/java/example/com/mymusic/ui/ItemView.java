@@ -3,6 +3,7 @@ package example.com.mymusic.ui;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;

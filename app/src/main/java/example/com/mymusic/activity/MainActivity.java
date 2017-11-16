@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 
+import java.text.FieldPosition;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,10 +89,7 @@ public class MainActivity extends AppCompatActivity {
 //        mainView.addItemDecoration(new MyDecoration(this, MyDecoration.VERTICAL_LIST));
         init();
         adapter = new RecyclerViewAdapter(this, screenWidth, musicList);
-        adapter.setOnItemClick(new RecyclerViewAdapter.OnItemClick() {
-            @Override
-            public void onClick(View view, int position) {
-
+        adapter.setOnItemClick((view, position) -> {
                 Intent intent = new Intent(MainActivity.this, PlayActivity.class);
                 /**
                  * 传参数
@@ -102,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("author", musicList.get(position).getAuthor());
                 intent.putExtra("image", musicList.get(position).getImage());
                 startActivity(intent);
-            }
         });
         mainView.setAdapter(adapter);
         parentView.addView(mainView);
