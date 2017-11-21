@@ -8,6 +8,13 @@ import android.widget.Button;
 
 import example.com.mymusic.R;
 
+/**
+ * search点击事件处理
+ * 跳转到搜索页，
+ * 先查询本地，
+ * 再查询数据库，
+ * 若没有，就去网上爬取相关内容。
+ */
 public class SearchActivity extends AppCompatActivity {
 
     @Override

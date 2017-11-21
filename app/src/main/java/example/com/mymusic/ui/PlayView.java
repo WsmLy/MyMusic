@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,32 +22,25 @@ import example.com.mymusic.util.DisplayUtil;
  */
 
 public class PlayView extends LinearLayout {
-    //    private Context context;
+
     private int width;
     private int image;
 
-    public PlayView(Context context, int width, int image) {
+    public ImageView btnPrevious, btnPlay, btnNext, btnStop, playImage;
+    public Spinner spinner;
+
+    public PlayView(Context context, int width) {
         super(context);
-//        this.context = context;
         this.width = width;
-        this.image = image;
         this.setOrientation(VERTICAL);
         init(context);
     }
 
     private void init(final Context context) {
 
-//        TextView nameText = new TextView(context);
-//        LayoutParams nameParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 48);//换成dp
-//        nameText.setLayoutParams(nameParams);
-//        nameText.setGravity(Gravity.CENTER);
-//        nameText.setText("music name");
-//        addView(nameText);
-
-        ImageView playImage = new ImageView(context);
+        playImage = new ImageView(context);
         LayoutParams params = new LayoutParams(width, (int) (width * 1.2));
         playImage.setLayoutParams(params);
-        playImage.setImageResource(image);
         addView(playImage);
 
         LinearLayout linearLayout = new LinearLayout(context);
@@ -55,52 +49,37 @@ public class PlayView extends LinearLayout {
         linearLayout.setLayoutParams(params1);
         linearLayout.setOrientation(HORIZONTAL);
 
-        ImageView btnStart, btnPause, btnStop;
-        btnStart = new ImageView(context);
-        btnPause = new ImageView(context);
+        btnPrevious = new ImageView(context);
+        btnPlay = new ImageView(context);
+        btnNext = new ImageView(context);
         btnStop = new ImageView(context);
-        LayoutParams btnParams = new LayoutParams(0, DisplayUtil.px2dip(context, 72), 1);
-        btnParams.setMargins(DisplayUtil.px2dip(context, 30), DisplayUtil.px2dip(context, 30), DisplayUtil.px2dip(context, 30), DisplayUtil.px2dip(context, 30));
-        btnStart.setLayoutParams(btnParams);
-        btnPause.setLayoutParams(btnParams);
-        btnStop.setLayoutParams(btnParams);
-        btnPause.setBackgroundResource(R.drawable.pause);
-        btnStart.setBackgroundResource(R.drawable.play);
-        btnStop.setBackgroundResource(R.drawable.stop);
-//        btnStart.setText("start");
-//        btnPause.setText("pause");
-//        btnStop.setText("stop");
-//        btnPause.setTextSize(12);
-//        btnStart.setTextSize(12);
-//        btnStop.setTextSize(12);
-        btnStart.setPadding(0, 0, 0, 0);
-        btnStop.setPadding(0, 0, 0, 0);
-        btnPause.setPadding(0, 0, 0, 0);
-        btnStart.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context, "start", Toast.LENGTH_SHORT).show();
-            }
-        });
-        btnStop.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context, "stop", Toast.LENGTH_SHORT).show();
-            }
-        });
-        btnPause.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context, "pause", Toast.LENGTH_SHORT).show();
-            }
-        });
-//        btnStart.setBackgroundColor(Color.RED);
-//        btnPause.setBackgroundColor(Color.YELLOW);
-//        btnStop.setBackgroundColor(Color.GREEN);
+        spinner = new Spinner(context);
+        LayoutParams btnParams = new LayoutParams(DisplayUtil.dip2px(context, 36), DisplayUtil.dip2px(context, 36));
+        btnParams.setMargins(DisplayUtil.dip2px(context, 12), DisplayUtil.dip2px(context, 8), DisplayUtil.dip2px(context, 12), DisplayUtil.dip2px(context, 8));
 
-        linearLayout.addView(btnStart);
-        linearLayout.addView(btnPause);
+        btnPrevious.setLayoutParams(btnParams);
+        btnPlay.setLayoutParams(btnParams);
+        btnNext.setLayoutParams(btnParams);
+        btnStop.setLayoutParams(btnParams);
+        spinner.setLayoutParams(btnParams);
+
+        btnPlay.setBackgroundResource(R.drawable.play);
+        btnPrevious.setBackgroundResource(R.drawable.skip_previous);
+        btnNext.setBackgroundResource(R.drawable.skip_next);
+        btnStop.setBackgroundResource(R.drawable.stop);
+        spinner.setBackgroundResource(R.drawable.menu);
+
+        btnPrevious.setPadding(0, 0, 0, 0);
+        btnNext.setPadding(0, 0, 0, 0);
+        btnPlay.setPadding(0, 0, 0, 0);
+        btnStop.setPadding(0, 0, 0, 0);
+        spinner.setPadding(0, 0, 0, 0);
+
+        linearLayout.addView(btnPrevious);
+        linearLayout.addView(btnPlay);
+        linearLayout.addView(btnNext);
         linearLayout.addView(btnStop);
+        linearLayout.addView(spinner);
         addView(linearLayout);
     }
 }

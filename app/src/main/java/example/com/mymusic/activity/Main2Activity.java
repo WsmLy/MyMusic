@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,13 +51,10 @@ public class Main2Activity extends AppCompatActivity
         init();
         adapter = new RecyclerViewAdapter(this, screenWidth, musicList);
         adapter.setOnItemClick((view, position) -> {
-                Intent intent = new Intent(Main2Activity.this, PlayActivity.class);
-                intent.putExtra("name", musicList.get(position).getName());
-                intent.putExtra("singer", musicList.get(position).getSinger());
-                intent.putExtra("date", musicList.get(position).getDate());
-                intent.putExtra("author", musicList.get(position).getAuthor());
-                intent.putExtra("image", musicList.get(position).getImage());
-                startActivity(intent);
+            Intent intent = new Intent(Main2Activity.this, PlayActivity.class);
+            intent.putExtra("data", (Serializable) musicList);
+            intent.putExtra("pos", position);
+            startActivity(intent);
         });
         mainView.setAdapter(adapter);
         onclick();
@@ -143,11 +141,7 @@ public class Main2Activity extends AppCompatActivity
     private void onclick() {
         search.setOnClickListener(v -> {
             /**
-             * search点击事件处理
-             * 跳转到搜索页，
-             * 先查询本地，
-             * 再查询数据库，
-             * 若没有，就去网上爬取相关内容。
+             * 跳转到SearchActivity
              */
             startActivity(new Intent(Main2Activity.this, SearchActivity.class));
             Toast.makeText(Main2Activity.this, "Search", Toast.LENGTH_SHORT).show();
@@ -162,26 +156,144 @@ public class Main2Activity extends AppCompatActivity
     private void init() {
         musicList = new ArrayList<>();
         BaseMusic music = new BaseMusic();
-        music.setName("name");
-        music.setAuthor("author");
-        music.setSinger("singer");
+        music.setName("name1");
+        music.setAuthor("author1");
+        music.setSinger("singer1");
         music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
         musicList.add(music);
         music = new BaseMusic();
-        music.setName("name");
-        music.setAuthor("author");
-        music.setSinger("singer");
+        music.setName("name2");
+        music.setAuthor("author2");
+        music.setSinger("singer2");
         music.setImage(R.mipmap.ic_launcher_round);
-        musicList.add(music); music = new BaseMusic();
-        music.setName("name");
-        music.setAuthor("author");
-        music.setSinger("singer");
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name3");
+        music.setAuthor("author3");
+        music.setSinger("singer3");
         music.setImage(R.mipmap.ic_launcher_round);
-        musicList.add(music); music = new BaseMusic();
-        music.setName("name");
-        music.setAuthor("author");
-        music.setSinger("singer");
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name4");
+        music.setAuthor("author4");
+        music.setSinger("singer4");
         music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name5");
+        music.setAuthor("author5");
+        music.setSinger("singer5");
+        music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name6");
+        music.setAuthor("author6");
+        music.setSinger("singer6");
+        music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name7");
+        music.setAuthor("author7");
+        music.setSinger("singer7");
+        music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name8");
+        music.setAuthor("author8");
+        music.setSinger("singer8");
+        music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name9");
+        music.setAuthor("author9");
+        music.setSinger("singer9");
+        music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name10");
+        music.setAuthor("author10");
+        music.setSinger("singer10");
+        music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name11");
+        music.setAuthor("author11");
+        music.setSinger("singer11");
+        music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name12");
+        music.setAuthor("author12");
+        music.setSinger("singer12");
+        music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name13");
+        music.setAuthor("author13");
+        music.setSinger("singer13");
+        music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name14");
+        music.setAuthor("author14");
+        music.setSinger("singer14");
+        music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name15");
+        music.setAuthor("author15");
+        music.setSinger("singer15");
+        music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name16");
+        music.setAuthor("author16");
+        music.setSinger("singer16");
+        music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name17");
+        music.setAuthor("author17");
+        music.setSinger("singer17");
+        music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name18");
+        music.setAuthor("author18");
+        music.setSinger("singer18");
+        music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name19");
+        music.setAuthor("author19");
+        music.setSinger("singer19");
+        music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
+        musicList.add(music);
+        music = new BaseMusic();
+        music.setName("name20");
+        music.setAuthor("author20");
+        music.setSinger("singer20");
+        music.setImage(R.mipmap.ic_launcher_round);
+        music.setResId(R.raw.huainvhai);
         musicList.add(music);
     }
 }

@@ -10,15 +10,16 @@
     tools:showIn="@layout/app_bar_main2">
     
     <EditText
+        android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="32dp"
-        android:layout_margin="16dp"
-        android:padding="16dp"
+        android:layout_margin="8dp"
+        android:padding="8dp"
         android:hint="@string/search"
         android:gravity="center"
         android:textSize="12sp"
-        android:drawableLeft="@drawable/magnify"
-        android:id="@+id/search"/>
+        android:drawableStart="@drawable/magnify"
+        android:background="#CCCCCC" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mainViewRecycler"

@@ -3,13 +3,15 @@ package example.com.mymusic.entity;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 
+import java.io.Serializable;
+
 /**
  * @author Wang Shaoming
  * @create 2017/9/6
  * @description
  */
 
-public class BaseMusic {
+public class BaseMusic implements Serializable {
 //    @Id
 //    public long id;
 
@@ -17,6 +19,15 @@ public class BaseMusic {
     private String date;
     private String singer;
     private String author;
+    private int resId;
+
+    public int getResId() {
+        return resId;
+    }
+
+    public void setResId(int resId) {
+        this.resId = resId;
+    }
 
     public int getImage() {
         return image;
