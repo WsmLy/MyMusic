@@ -1,6 +1,5 @@
 package example.com.mymusic.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.hardware.display.DisplayManager;
