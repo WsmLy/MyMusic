@@ -48,13 +48,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         ((ItemView)holder.itemView).getName().setText(musicList.get(position).getName());
         ((ItemView)holder.itemView).getAuther().setText(musicList.get(position).getAuthor());
         ((ItemView)holder.itemView).getImageView().setImageResource(musicList.get(position).getImage());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (itemClickable) {
-                    int position = holder.getLayoutPosition();
-                    onItemClick.onClick(holder.itemView, position);
-                }
+        holder.itemView.setOnClickListener(view -> {
+            if (itemClickable) {
+//                    int position = holder.getAdapterPosition();
+                onItemClick.onClick(holder.itemView, position);
             }
         });
     }
