@@ -2,7 +2,6 @@ package example.com.mymusic.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.hardware.display.DisplayManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +23,6 @@ import java.util.List;
 
 import example.com.mymusic.R;
 import example.com.mymusic.entity.BaseMusic;
-import example.com.mymusic.entity.Player;
 import example.com.mymusic.ui.PlayView;
 import example.com.mymusic.util.DisplayUtil;
 
@@ -75,12 +73,11 @@ public class PlayActivity extends AppCompatActivity {
         );
         playView.btnStop.setOnClickListener(v -> mediaPlayer.stop());
 
-
-
         ActionBar actionBar = getSupportActionBar();
+        View barView = createBarView(position);
         if (actionBar != null) {
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-            actionBar.setCustomView(createBarView());
+            actionBar.setCustomView(barView);
         }
 
         adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, nameList);
@@ -100,7 +97,7 @@ public class PlayActivity extends AppCompatActivity {
         });
     }
 
-    private View createBarView() {
+    private View createBarView(int position) {//发现bug，进入本界面时barView的name和singer显示错误。
         LinearLayout barView = new LinearLayout(this);
         LinearLayout.LayoutParams barParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         barView.setLayoutParams(barParams);
@@ -126,7 +123,8 @@ public class PlayActivity extends AppCompatActivity {
         nameText.setGravity(Gravity.CENTER);
         nameText.setTextSize(14);
         nameText.setTextColor(Color.WHITE);
-        nameText.setText(nameList.get(position));
+        Toast.makeText(PlayActivity.this, position + "  " + nameList.get(position), Toast.LENGTH_SHORT).show();
+//        nameText.setText(nameList.get(position));
         linearLayout.addView(nameText);
 
         singerText = new TextView(this);
@@ -134,7 +132,7 @@ public class PlayActivity extends AppCompatActivity {
         singerText.setGravity(Gravity.CENTER);
         singerText.setTextSize(12);
         singerText.setTextColor(Color.WHITE);
-        singerText.setText(singerList.get(position));
+//        singerText.setText(singerList.get(position));
         linearLayout.addView(singerText);
 
         barView.addView(linearLayout);
@@ -144,7 +142,7 @@ public class PlayActivity extends AppCompatActivity {
 
     private void initList(Intent intent) {
         List<BaseMusic> musicList = (List<BaseMusic>) intent.getSerializableExtra("data");
-        position = intent.getIntExtra("pos", 0);
+        this.position = intent.getIntExtra("pos", 0);
         nameList = new ArrayList<>();
         singerList = new ArrayList<>();
         imageList = new ArrayList<>();
